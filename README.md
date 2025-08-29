@@ -146,9 +146,9 @@ Copy code
 # Backend
 cd api
 npm install
-npm run dev      # http://localhost:4000
+npm run dev
 
 # Frontend
 cd ../web
 npm install
-npm run dev      # http://localhost:3000
+npm run dev      
