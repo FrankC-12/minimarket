@@ -29,63 +29,94 @@ export default function ProductsPage() {
     setLoading(false);
   }, [page, limit, sort, order, search, available]);
 
-  useEffect(() => {
-    fetchProducts();
-    fetchTopProducts();
-  }, [fetchProducts]);
-
   const fetchTopProducts = async () => {
     const res = await getTopCheapestProducts(3);
     setTopProducts(res.data);
   };
 
+  useEffect(() => {
+    fetchProducts();
+    fetchTopProducts();
+  }, [fetchProducts]);
+
   return (
-    <div style={{ padding: 16 }}>
-      {/* Sección Top 3 */}
-      <h2>Top 3 productos más baratos</h2>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: 16, marginBottom: 32 }}>
+    <div className="p-4 sm:p-8">
+      {/* Top 3 productos */}
+      <h2 className="text-3xl font-bold text-center mb-6">Top 3 productos más baratos</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-12">
         {topProducts.map(p => <ProductCard key={p.id} product={p} />)}
       </div>
 
       {/* Filtros */}
-      <div style={{ display: "flex", gap: 16, marginBottom: 16, flexWrap: "wrap" }}>
+      <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-6 flex-wrap">
         <input
           type="text"
           placeholder="Buscar por nombre..."
           value={search}
           onChange={e => setSearch(e.target.value)}
+          className="border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
-        <label htmlFor="sort-select">Ordenar por:</label>
-        <select id="sort-select" value={sort} onChange={e => setSort(e.target.value)}>
-          <option value="price">Precio</option>
-          <option value="name">Nombre</option>
-        </select>
-        <label htmlFor="order-select">Orden:</label>
-        <select id="order-select" value={order} onChange={e => setOrder(e.target.value)}>
-          <option value="asc">Ascendente</option>
-          <option value="desc">Descendente</option>
-        </select>
-        <label>
+        <div className="flex items-center gap-2">
+          <label htmlFor="sort-select" className="font-medium">Ordenar por:</label>
+          <select
+            id="sort-select"
+            value={sort}
+            onChange={e => setSort(e.target.value)}
+            className="border rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="price">Precio</option>
+            <option value="name">Nombre</option>
+          </select>
+        </div>
+        <div className="flex items-center gap-2">
+          <label htmlFor="order-select" className="font-medium">Orden:</label>
+          <select
+            id="order-select"
+            value={order}
+            onChange={e => setOrder(e.target.value)}
+            className="border rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="asc">Ascendente</option>
+            <option value="desc">Descendente</option>
+          </select>
+        </div>
+        <label className="flex items-center gap-2">
           <input
             type="checkbox"
             checked={available}
             onChange={e => setAvailable(e.target.checked)}
-          /> Solo en stock
+            className="accent-blue-500"
+          />
+          Solo en stock
         </label>
       </div>
 
       {/* Productos */}
-      {loading ? <p>Cargando productos...</p> : (
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: 16 }}>
+      {loading ? (
+        <p className="text-center text-gray-500">Cargando productos...</p>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {products.map(p => <ProductCard key={p.id} product={p} />)}
         </div>
       )}
 
       {/* Paginación */}
-      <div style={{ marginTop: 16, display: "flex", gap: 8 }}>
-        <button onClick={() => setPage(page - 1)} disabled={page === 1}>Anterior</button>
-        <span>Página {page}</span>
-        <button onClick={() => setPage(page + 1)} disabled={products.length < limit}>Siguiente</button>
+      <div className="flex justify-center gap-4 mt-6">
+        <button
+          onClick={() => setPage(page - 1)}
+          disabled={page === 1}
+          className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50 hover:bg-gray-300"
+        >
+          Anterior
+        </button>
+        <span className="flex items-center font-medium">Página {page}</span>
+        <button
+          onClick={() => setPage(page + 1)}
+          disabled={products.length < limit}
+          className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50 hover:bg-gray-300"
+        >
+          Siguiente
+        </button>
       </div>
     </div>
   );

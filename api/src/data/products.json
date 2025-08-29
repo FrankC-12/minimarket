@@ -1,5 +1,9 @@
 [
-    { "id": "p1", "name": "Guantes GN102", "price": 59.9, "isAvailable": true, "category": "gloves", "image": "/img/gn102.jpg" },
-    { "id": "p2", "name": "Casco CS433", "price": 79.9, "isAvailable": false, "category": "headgear", "image": "/img/cs433.jpg" },
-    { "id": "p3", "name": "Bolsa AC990", "price": 24.5, "isAvailable": true, "category": "bag", "image": "/img/ac990.jpg" }
-  ]
+  { "id": "p1", "name": "Guantes GN102", "price": 59.9, "isAvailable": true, "category": "gloves", "image": "/BolsaAC900.jpg" },
+  { "id": "p2", "name": "Casco CS433", "price": 79.9, "isAvailable": false, "category": "headgear", "image": "/Casco.png" },
+  { "id": "p3", "name": "Bolsa AC990", "price": 24.5, "isAvailable": true, "category": "bag", "image": "/Guantes.png" },
+  { "id": "p4", "name": "Botas", "price": 120.0, "isAvailable": true, "category": "footwear", "image": "/Botas.jpg" },
+  { "id": "p5", "name": "Camiseta CT200", "price": 35.5, "isAvailable": true, "category": "clothing", "image": "/Camiseta.jpg" },
+  { "id": "p6", "name": "Cartera ", "price": 65.0, "isAvailable": true, "category": "bag", "image": "/Cartera.png" },
+  { "id": "p7", "name": "Gorra", "price": 15.0, "isAvailable": true, "category": "headgear", "image": "/Gorra.jpg" }
+]
